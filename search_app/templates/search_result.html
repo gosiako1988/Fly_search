@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+    <h3>Wyniki: {{fly_from}} -  {{fly_to}} </h3>
+
+            <table class="table container border border-dark" style="width: 30%">
+                   <thead>
+                      <tr>
+                         <th>Data wylotu</th>
+                          <th>Data powrotu</th>
+                          <th>Wartość </th>
+                          <th>Ilość wolnych miejsc</th>
+                          <th>Link do rezerwacji</th>
+                      </tr>
+                   </thead>
+                    <tbody>
+                        {%  for res in results %}
+                       <tr>
+                           <td class="border border-dark">{{ res.route.0.local_departure }}</td>
+                           <td class="border border-dark">{{ res.route.1.local_departure }}</td>
+                           <td class="border border-dark">{{ res.price }}</td>
+                           <td class="border border-dark">{{ res.availability.seats }}</td>
+                           <td class="border border-dark"><a href="{{ res.deep_link }}"> Rezerwuj </a></td>
+
+                        </tr>
+                        {%  endfor %}
+                   </tbody>
+
+            </table>
+
+
+
+{% endblock %}

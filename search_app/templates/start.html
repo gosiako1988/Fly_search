@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+    <form method="get" action="{% url 'search' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="input-group mt-3">
+                        <select class="form-control basicAutoSelect" name="origin_airport" placeholder="Lotnisko początkowe" data-url="{% url 'city_code' %}" autocomplete="off" required>
+                        </select>
+
+                    </div>
+                    <div class="input-group mt-3">
+                        <select class="form-control basicAutoSelect" name="destination_airport" placeholder="Lotnisko docelowe" data-url="{% url 'city_code' %}" autocomplete="off" required>
+                        </select>
+
+                    </div>
+                    <div class="input-group mt-3">
+                        <input type="number" min="1" class="form-control" placeholder="Dorośli" name="adults" value="1">
+                    </div>
+                    <div class="input-group mt-3">
+                        <input type="number" min="0" class="form-control" placeholder="Dzieci poniżej 12 lat" name="children" value="0">
+                    </div>
+                    <div class="input-group mt-3">
+                        <input type="number" min="0" class="form-control" placeholder="Dzieci 0-2 lata" name="infants" value="0">
+                    </div>
+                    <div class="form-group mt-3">
+                        <label> Data wylotu: </label><br>
+                        <div class="row">
+                            <div class="col-md-6">
+                            Od <input type="date" class="form-control" name="date_from" value="{{ day_now }}">
+                            </div>
+                            <div class="col-md-6">
+                            Do <input type="date" class="form-control" name="date_to" value="{{ day_to }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label> Data powrotu: </label><br>
+                        <div class="row">
+                            <div class="col-md-6">
+                            Od <input type="date" class="form-control" name="return_from" value="{{ day_now }}">
+                            </div>
+                            <div class="col-md-6">
+                            Do <input type="date" class="form-control" name="return_to" value="{{ day_to }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <button class="btn btn-primary" type="submit">Szukaj</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}

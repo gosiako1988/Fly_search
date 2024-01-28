@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+    <h3>Wyniki: {{fly_from}} -  {{fly_to}} </h3>
+
+            <table class="table container border border-dark" style="width: 40%">
+                   <thead>
+                      <tr>
+                          <th class="border border-dark">Data wylotu</th>
+                          <th class="border border-dark">Data powrotu</th>
+                          <th class="border border-dark">Wartość </th>
+                          <th class="border border-dark">Ilość wolnych miejsc</th>
+                          <th class="border border-dark">Link do rezerwacji</th>
+                      </tr>
+                   </thead>
+                    <tbody>
+                        {%  for res in results %}
+                            <td class="border border-dark">{{ res.route.0.local_departure }}</td>
+                            <td class="border border-dark">{{ res.route.1.local_departure }}</td>
+                            <td class="border border-dark">{{ res.price }}</td>
+                            <td class="border border-dark">{{ res.availability.seats }}</td>
+                            <td class="border border-dark"><a href="{{ res.deep_link }}"> Rezerwuj </a></td>
+                        </tr>
+                        {%  endfor %}
+                   </tbody>
+            </table>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <input type="hidden" name="price" value="{{ results.0.price }}">
+        <label>Wybierz kategorię: </label>
+        <select name="categories">
+            <option value="wakacje">Wakacje</option>
+            <option value="ferie">Ferie</option>
+            <option value="święta">Święta</option>
+            <option value="inne">Inne</option>
+        </select><br>
+        <button> Powiadom jak spadnie najniższa cena </button>
+
+
+    </form>
+
+
+
+
+{% endblock %}

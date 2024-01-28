@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+            <table class="table container border border-dark" style="width: 30%">
+                   <thead>
+                      <tr>
+                         <th>Lot z </th>
+                          <th>Lot do</th>
+                          <th>Wartość </th>
+                          <th>Dorośli</th>
+                          <th>Dzieci</th>
+                          <th>Niemowlęta</th>
+                      </tr>
+                   </thead>
+                    <tbody>
+                    {%  for result in flight %}
+                       <tr>
+                           <td class="border border-dark">{{ result.origin_airport_text }}</td>
+                           <td class="border border-dark">{{ result.destination_airport_text }}</td>
+                           <td class="border border-dark">{{ result.price }}</td>
+                           <td class="border border-dark">{{ result.adults }}</td>
+                           <td class="border border-dark">{{ result.children }}</td>
+                           <td class="border border-dark">{{ result.infants }}</td>
+
+                        </tr>
+                    {%  endfor %}
+                   </tbody>
+
+            </table>
+
+
+
+{% endblock %}
